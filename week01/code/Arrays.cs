@@ -13,7 +13,18 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        //create an array of doubles with the size of the length supplied
+        var multiples = new double[length];
+
+        //use a for loop to iterate through the length of the array and add the multiples of the given number to the array created above
+        for (int i = 0; i < length; i++)
+        {
+            //using the index of the loop, calculate the multiple and assign it to the current index of the array
+            multiples[i] = number * (i + 1);
+        }
+
+        //return the array of multiples
+        return multiples; // replace this return statement with your own
     }
 
     /// <summary>
@@ -29,5 +40,15 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        //get a range of the last amount of numbers from the list
+        var end = data.GetRange(data.Count - amount, amount);
+
+        //remove the last amount of numbers from the list
+        data.RemoveRange(data.Count - amount, amount);
+
+        //insert the range of numbers at the start of the list
+        data.InsertRange(0, end);
+
     }
 }
