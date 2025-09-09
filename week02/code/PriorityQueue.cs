@@ -1,6 +1,7 @@
 ﻿public class PriorityQueue
 {
     private List<PriorityItem> _queue = new();
+    public int Count => _queue.Count;
 
     /// <summary>
     /// Add a new value to the queue with an associated priority.  The
@@ -24,16 +25,34 @@
 
         // Find the index of the item with the highest priority to remove
         var highPriorityIndex = 0;
-        for (int index = 1; index < _queue.Count - 1; index++)
+        for (int index = 0; index < _queue.Count; index++)
         {
-            if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)
+            //removed the equal to condition to consider the index of the items with same priority while dequeuing.
+            if (_queue[index].Priority > _queue[highPriorityIndex].Priority)
                 highPriorityIndex = index;
         }
 
         // Remove and return the item with the highest priority
         var value = _queue[highPriorityIndex].Value;
+        _queue.RemoveAt(highPriorityIndex);
         return value;
     }
+
+    //method to reurn a string representation of the queue
+    public List<string> Peek()
+    {
+        if (_queue.Count == 0) // Verify the queue is not empty
+        {
+            throw new InvalidOperationException("The queue is empty.");
+        }
+        List<string> values = new();
+        for (int i = 0; i < _queue.Count; i++)
+        {
+            values.Add(_queue[i].Value);
+        }
+        return values;
+    }
+
 
     // DO NOT MODIFY THE CODE IN THIS METHOD
     // The graders rely on this method to check if you fixed all the bugs, so changes to it will cause you to lose points.
